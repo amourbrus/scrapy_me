@@ -20,11 +20,11 @@ with open("VERSION.txt", "r") as f:
         作为一个合格的模块，应该要有版本号哦。
     """
 setup(
-    name='scrapy_plus',    # 模块名称
+    name='scrapy_suger',    # 模块名称
     version=version,        # 安装框架后的版本号
     description='A mini spider framework, like Scrapy',    # 描述
     packages=find_packages(exclude=[]), # 不排除任何文件
-    author='itheima',
+    author='amourbrus',
     author_email='your@email.com',
     license='Apache License v2', # 遵循的Linux软件发行协议
     package_data={'': ['*.*']},  # 获取任意文件名任意后缀的文件
