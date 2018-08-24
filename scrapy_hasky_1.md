@@ -48,7 +48,7 @@ class Item(object):
         return self._data   # 提供对外访问的接口，但是不允许修改
 
 ```
-*数据允许访问，但不允许修改,@property，方法变为属性*
+*数据允许访问，但不允许修改, @property，方法变为属性*
 *注释的不同三个引号的可以在导入时候显示提示信息*
 demo：
 import a
@@ -100,7 +100,9 @@ class scheduler(object):
     def add_request(self):
       # 先对请求进行去重，如果不重复则放入请求队列
         if self._filter_request(request):
+            # 如果请求通过了指纹判重，将请求添加到队列中，同时也记录请求指纹---这里的指纹比较简单，只是请求的url,后期改进sha1
             self.queue.put(request)
+            self.filter_set.add(request.url)
 
     def get_request(self):
       # FIFO
@@ -162,14 +164,15 @@ class Spider(object):
     def parse(self, response):
         data = {}
         data['url'] = response.url
-        data['content'] = response.body
+        data['content'] = response.len(body)
         item = Item(data)
         return item
         # Item(response.body)
 
 # pipeline.py
 class Pipeline(object):
-    def
+    def process_item(self, item):
+        print(item.data)
 
 ```
 *主要模块，引擎*
@@ -214,6 +217,7 @@ class Engine(object):
 - 代码见github scrapy_me
 - 设置requirements.py
 - pip freeze  \ list  > xxx.txt
+- 版本文件 ---  VERSION.txt
 ```python
 # 执行代码
 from scrapy_plus.core.engine import
@@ -293,7 +297,7 @@ def _start_engine(self):
 - utils
   - log.py
 - 单例模式
-- 时间 total_seconds 计算两个时间,5 level
+- 时间 total_seconds 计算两个时间, 5 level
 代码见github
 ```python
 # engine.py

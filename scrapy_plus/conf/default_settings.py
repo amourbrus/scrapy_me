@@ -15,6 +15,14 @@ PIPELINES = []
 SPIDER_MIDDLEWARES = []
 DOWNLOADER_MIDDLEWARES = []
 
+
+# redis队列默认配置
+REDIS_QUEUE_NAME = 'request_queue'
+REDIS_QUEUE_HOST = 'localhost'
+REDIS_QUEUE_PORT = 6379
+REDIS_QUEUE_DB = 0
+
+
 # 读取的是用户目录下的settings文件，如果文件中有重名的变量，则覆盖之前的变量值
 from settings import *
 

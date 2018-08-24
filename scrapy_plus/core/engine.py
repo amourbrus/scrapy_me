@@ -111,13 +111,7 @@ class Engine(object):
 
 
 
-# 递归有两个重要必须的特性：
-# 1. 必须有返回值
-# 2. 必须有停止条件
 
-# Python递归强制退出机制：递归1000次左右，强制停止递归，防止计算机资源被消耗。
-# def func()
-#     func()
 
 
     def _callback(self, _):
@@ -128,12 +122,18 @@ class Engine(object):
 
     def _start_engine(self):
         logger.info("Async Type is {}".format(ASYNC_TYPE))
-        # 将start_request请求存入调度器
-        self._execute_start_request()
 
-        for _ in range(ASYNC_COUNT):
-            # 创建一个子线程执行这一部分代码
-            self.pool.apply_async(self._execute_request_response_item, callback=self._callback)
+        if role == "master" or role is None:
+            print("Role is {}".format(role))
+            # 将start_request请求存入调度器
+            self._execute_start_request()
+
+        if role == "slave" or role is None:
+            print("Role is {}".format(role))
+
+            for _ in range(ASYNC_COUNT):
+                # 创建一个子线程执行这一部分代码
+                self.pool.apply_async(self._execute_request_response_item, callback=self._callback)
         # 从调度器中取出请求，发送请求解析响应（涉及到网络IO)
         #self._execute_request_response_item()
 
