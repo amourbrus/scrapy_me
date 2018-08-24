@@ -4,6 +4,7 @@ import requests
 import chardet
 
 from ..http.response import Response
+from ..utils.log import logger
 
 class Downloader(object):
     """
@@ -30,6 +31,8 @@ class Downloader(object):
         else:
             # 如果不支持请求的方法，直接抛出异常，否则正常返回响应
             raise Exception("[ERROR]: Not Support method : <{}>".format(request.method))
+
+        logger.info("Downloader response : [{}] <{}>".format(response.status_code, response.url))
 
         return Response(
             url = response.url,

@@ -16,6 +16,8 @@ class Scheduler(object):
         self.queue = Queue()
         self.filter_set = set()
 
+        self.total_request = 0
+
     def add_request(self, request):
         # 获取请求指纹
         fp = self._get_fingerprint(request)
@@ -25,6 +27,8 @@ class Scheduler(object):
             self.queue.put(request)
             #self.filter_set.add(request.url)
             self.filter_set.add(fp)
+
+            self.total_request += 1
 
 
     def get_request(self):

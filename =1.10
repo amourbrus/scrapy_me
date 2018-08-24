@@ -1,2 +1,0 @@
-Requirement already satisfied: w3lib in /home/python/.virtualenvs/spider_py2/lib/python2.7/site-packages (1.14.2)
-Requirement already satisfied: six>=1.4.1 in /home/python/.virtualenvs/spider_py2/lib/python2.7/site-packages (from w3lib) (1.10.0)
